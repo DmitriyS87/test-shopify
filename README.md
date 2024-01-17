@@ -8,7 +8,7 @@
 на Linux 5.15.0-89-generic x86_64 
 
 Необходимо установить и проверить работоспособность
-- Git (с авторизацией по ssh)
+- Git
 - Docker
 - Docker Compose
 - bash

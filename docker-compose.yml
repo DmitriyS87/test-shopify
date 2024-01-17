@@ -32,11 +32,8 @@ services:
       - appnetwork
     depends_on:
       - dbtest
-    environment:
-      - POSTGRES_NAME=testdb
-      - POSTGRES_USER=testdb
-      - POSTGRES_PASSWORD=testdb
-      - POSTGRES_PORT=5432
+    env_file:
+      - .env
     ports:
       - "8080:8080"
     volumes:

@@ -16,8 +16,6 @@ echo "Клонирование репозитория c фронтенд при�
 git clone $FRONTEND_REPO_URL $FRONTEND_DIR
 echo "Клонирование завершено."
 
-cd .
-
 echo "Запуск Docker Compose..."
 docker-compose up --build -d
 echo "Docker Compose успешно запущен."

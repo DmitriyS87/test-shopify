@@ -22,8 +22,8 @@
 
 пеоед запуском скрипта необходимо в фале .env добавить переменные для доступа к api
 
-`SHOPIFY_HOST=
-SHOPIFY_ACCESS_TOKEN=`
+`SHOPIFY_HOST=`
+`SHOPIFY_ACCESS_TOKEN=`
 
 запуск скрипта:
 

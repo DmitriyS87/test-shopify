@@ -1,0 +1,53 @@
+version: '3'
+services:
+  dbtest:
+      image: postgres
+      networks:
+      - appnetwork
+      volumes:
+        - ./data/db:/var/lib/postgresql/data
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_DB=testdb
+        - POSTGRES_USER=testdb
+        - POSTGRES_PASSWORD=testdb
+        - POSTGRES_PORT=5432
+      expose:
+        - 5432
+  dbadmin:
+      image: dpage/pgadmin4
+      networks:
+      - appnetwork
+      ports:
+        - "5052:80"
+      environment:
+        PGADMIN_DEFAULT_EMAIL: dmitriys87@internet.ru
+        PGADMIN_DEFAULT_PASSWORD: testdb
+      restart: always
+  backend:
+    build:
+      context: ./backend
+    networks:
+      - appnetwork
+    depends_on:
+      - dbtest
+    environment:
+      - POSTGRES_NAME=testdb
+      - POSTGRES_USER=testdb
+      - POSTGRES_PASSWORD=testdb
+      - POSTGRES_PORT=5432
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/usr/src/app
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/usr/src/app
+networks:
+  appnetwork:
+    driver: bridge
